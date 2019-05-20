@@ -16,7 +16,27 @@ The main goal is to learn and practice Flutter/Dart.
 - How important it is to read the official documentation before going for tutorials
 
 ## Screenshots
+<div style="text-align: center">
+<table>
+<tr>
+<td style="text-align: center">
+    <img src="https://github.com/albertosdneto/imc/blob/master/images/01.png" width="200" />
+</td>
 
-<img src="https://github.com/albertosdneto/imc/blob/master/images/01.png" width="100" />
-<img src="https://github.com/albertosdneto/imc/blob/master/images/02.png" width="100" />
-<img src="https://github.com/albertosdneto/imc/blob/master/images/03.png" width="100" />
+<td style="text-align: center">
+    <img src="https://github.com/albertosdneto/imc/blob/master/images/02.png" width="200" />
+</td>
+
+<td style="text-align: center">
+    <img src="https://github.com/albertosdneto/imc/blob/master/images/03.png" width="200" />
+
+</td>
+
+</tr>
+</table>
+</div>
+
+
+
+
+
