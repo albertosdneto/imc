@@ -12,5 +12,5 @@ The main goal is to learn and practice Flutter/Dart.
 - Adding an Icon do the App
 - Adding SplashScreen to the app
 - How important it is to read the official documentation before going for tutorials
-=======
+
 
