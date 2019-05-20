@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # imc_novo
 
 A new Flutter application.
@@ -14,3 +15,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# imc
+Simple app to calculate Body mass index and creat chart with the values.
+>>>>>>> b189064965e934e03988c2a016dc0fa1999d95f6
