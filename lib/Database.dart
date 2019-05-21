@@ -8,7 +8,7 @@ import 'package:sqflite/sqflite.dart';
 
 //Banco de dados e suas ferramentas.
 class DBProvider {
-  DBProvider._(); //Singleton: permte só uma instância do banco de dados
+  DBProvider._(); //Singleton: permite só uma instância do banco de dados
 
   static final DBProvider db = DBProvider._();
 
