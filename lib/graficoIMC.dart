@@ -40,7 +40,9 @@ class _GraficoIMCState extends State<GraficoIMC> {
                 if (i == 0) {
                   data[0] = MassaPorMedida(
                       snapshot.data[i].id.toString(),
-                      int.parse(snapshot.data[i].clientWeight),
+                      int.parse(double.parse(snapshot.data[i].clientWeight)
+                          .ceil()
+                          .toString()),
                       Color(seletorDeCores(
                           double.parse(snapshot.data[i].clientImc))),
                       double.parse(snapshot.data[i].clientImc));
