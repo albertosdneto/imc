@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'Database.dart';
 import 'DataModel.dart';
+import 'common.dart';
 
 class GraficoIMC extends StatefulWidget {
   @override
@@ -19,31 +20,6 @@ class MassaPorMedida {
   MassaPorMedida(this.id, this.massa, Color color, this.imc)
       : this.color = new charts.Color(
             r: color.red, g: color.green, b: color.blue, a: color.alpha);
-}
-
-int escolherCor(String imc) {
-  var temp = double.parse(imc);
-
-  if (temp >= 40.0)
-    return 0xFFda64f6;
-  else {
-    if (temp >= 35.0 && temp < 40.0)
-      return 0xFFf66464;
-    else {
-      if (temp >= 30.0 && temp < 35.0)
-        return 0xFFf0a842;
-      else {
-        if (temp >= 25.0 && temp < 30.0)
-          return 0xFFfada8f;
-        else {
-          if (temp >= 18.5 && temp < 25.0)
-            return 0xFF44d185;
-          else
-            return 0xFF9bdaeb;
-        }
-      }
-    }
-  }
 }
 
 class _GraficoIMCState extends State<GraficoIMC> {
@@ -65,13 +41,17 @@ class _GraficoIMCState extends State<GraficoIMC> {
                   data[0] = MassaPorMedida(
                       snapshot.data[i].id.toString(),
                       int.parse(snapshot.data[i].clientWeight),
-                      Color(escolherCor(snapshot.data[i].clientImc)),
+                      Color(seletorDeCores(
+                          double.parse(snapshot.data[i].clientImc))),
                       double.parse(snapshot.data[i].clientImc));
                 } else {
                   data.add(new MassaPorMedida(
                       snapshot.data[i].id.toString(),
-                      int.parse(snapshot.data[i].clientWeight),
-                      Color(escolherCor(snapshot.data[i].clientImc)),
+                      int.parse(double.parse(snapshot.data[i].clientWeight)
+                          .ceil()
+                          .toString()),
+                      Color(seletorDeCores(
+                          double.parse(snapshot.data[i].clientImc))),
                       double.parse(snapshot.data[i].clientImc)));
                 }
               }
@@ -90,17 +70,16 @@ class _GraficoIMCState extends State<GraficoIMC> {
                 animate: true,
               );
               var chartWidget = new Padding(
-                padding: new EdgeInsets.all(32.0),
+                padding: new EdgeInsets.all(10.0),
                 child: new SizedBox(
-                  height: 200.0,
+                  height: 150.0,
                   child: chart,
                 ),
               );
 
               return Column(
                 children: <Widget>[
-                  Text('Acompanhamento do IMC'),
-                  Text('Os valores devem ser intepretados por um profissional de saúde.'),
+                  Text('Gráfico com IMC Salvo'),
                   chartWidget,
                 ],
               );

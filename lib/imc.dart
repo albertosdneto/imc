@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'Database.dart';
 import 'DataModel.dart';
+import 'common.dart';
 
 class FormularioIMC extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class FormularioIMC extends StatefulWidget {
 class _FormularioIMCState extends State<FormularioIMC> {
   //Identifica cada formulário
   final _formKey = GlobalKey<FormState>();
-  String _resultado = '';
+  String _resultado = '0';
 
   //controladores pros campos de texto do formulário
   TextEditingController alturaController = TextEditingController();
@@ -47,7 +48,7 @@ class _FormularioIMCState extends State<FormularioIMC> {
     pesoController.text = '';
     FocusScope.of(context).requestFocus(nodeOne);
     setState(() {
-      _resultado = '';
+      _resultado = '0';
     });
   }
 
@@ -69,56 +70,71 @@ class _FormularioIMCState extends State<FormularioIMC> {
       key: _formKey,
       child: ListView(
         children: <Widget>[
-          TextFormField(
-            autofocus: true,
-            focusNode: nodeOne,
-            keyboardType:
-                TextInputType.numberWithOptions(signed: false, decimal: true),
-            decoration: new InputDecoration(
-              hintText: 'Peso em kg',
-              labelText: 'Peso',
-            ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Por favor, digite algo.';
-              }
-              if (!isNumber(value)) {
-                pesoController.text = '';
-                return 'Valor inválido!';
-              }
-            },
-            controller: pesoController,
-            onFieldSubmitted: (value) {
-              FocusScope.of(context).requestFocus(nodeTwo);
-            },
-            textInputAction: TextInputAction.next,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  SizedBox(
+                    width: 130.0,
+                    child: TextFormField(
+                      autofocus: true,
+                      focusNode: nodeOne,
+                      keyboardType: TextInputType.numberWithOptions(
+                          signed: false, decimal: true),
+                      decoration: new InputDecoration(
+                        hintText: 'Massa em kg',
+                        labelText: 'Massa',
+                      ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Por favor, digite algo.';
+                        }
+                        if (!isNumber(value)) {
+                          pesoController.text = '';
+                          return 'Valor inválido!';
+                        }
+                      },
+                      controller: pesoController,
+                      onFieldSubmitted: (value) {
+                        FocusScope.of(context).requestFocus(nodeTwo);
+                      },
+                      textInputAction: TextInputAction.next,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 130.0,
+                    child: TextFormField(
+                      focusNode: nodeTwo,
+                      keyboardType: TextInputType.numberWithOptions(
+                          signed: false, decimal: false),
+                      decoration: new InputDecoration(
+                        hintText: 'Altura em cm',
+                        labelText: 'Altura',
+                      ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Por favor, digite algo.';
+                        }
+                        if (!isNumber(value)) {
+                          return 'Valor inválido!';
+                        }
+                      },
+                      controller: alturaController,
+                      textInputAction: TextInputAction.done,
+                      onFieldSubmitted: (value) {
+                        _calcular();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                  width: 130,
+                  child: ResultadoIMC(imc: double.parse(_resultado))),
+            ],
           ),
           SizedBox(width: 10, height: 10),
-          TextFormField(
-            focusNode: nodeTwo,
-            keyboardType:
-                TextInputType.numberWithOptions(signed: false, decimal: false),
-            decoration: new InputDecoration(
-              hintText: 'Altura em cm',
-              labelText: 'Altura',
-            ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Por favor, digite algo.';
-              }
-              if (!isNumber(value)) {
-                return 'Valor inválido!';
-              }
-            },
-            controller: alturaController,
-            textInputAction: TextInputAction.done,
-            onFieldSubmitted: (value) {
-              _calcular();
-            },
-          ),
-          SizedBox(width: 10, height: 10),
-          Text('Resultado: ' + _resultado),
-          SizedBox(width: 10, height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[

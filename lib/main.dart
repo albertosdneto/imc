@@ -25,9 +25,7 @@ class MyApp extends StatelessWidget {
             title: ListView(
               children: <Widget>[
                 Text('Controle de IMC'),
-                Text(
-                  'App demonstrativo.\nConsulte um médico',
-                  maxLines: 2,
+                Text('App demonstrativo.',
                   textScaleFactor: 0.6,
                 ),
               ],
