@@ -22,7 +22,8 @@
 </div>
 
 ## Description
-Flutter App to calculate basic mass index and store it at local database.
+Flutter App to calculate basic mass index and store it at local database. 
+This was my first app with flutter and it will remain here, the way it is, for historical purpose, so I can compare both my code and interface evolution along the months.
 
 ## Goals of this projet
 
