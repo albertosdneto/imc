@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
             title: ListView(
               children: <Widget>[
                 Text('Controle de IMC'),
-                Text('App demonstrativo.',
+                Text('App Demonstrativo.',
                   textScaleFactor: 0.6,
                 ),
               ],
